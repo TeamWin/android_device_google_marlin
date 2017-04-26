@@ -31,6 +31,11 @@ PRODUCT_COPY_FILES += \
 
 DEVICE_PACKAGE_OVERLAYS += device/google/marlin/overlay
 
+PRODUCT_COPY_FILES += \
+    device/google/marlin/recovery/root/sbin/bootctrl.msm8996.so:recovery/root/sbin/bootctrl.msm8996.so \
+    device/google/marlin/recovery/root/sbin/pulldecryptfiles.sh:recovery/root/sbin/pulldecryptfiles.sh \
+    device/google/marlin/recovery/root/sbin/qseecomd:recovery/root/sbin/qseecomd
+
 # Input device files
 PRODUCT_COPY_FILES += \
     device/google/marlin/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
@@ -344,8 +349,8 @@ PRODUCT_PACKAGES += \
 # boot_control HAL and its dependencies.
 PRODUCT_STATIC_BOOT_CONTROL_HAL := \
     bootctrl.msm8996 \
-    libgptutils \
-    libsparse
+    librecovery_updater_msm \
+    libsparse_static
 PRODUCT_PACKAGES += \
     update_engine_sideload
 
