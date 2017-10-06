@@ -32,9 +32,18 @@ PRODUCT_COPY_FILES += \
 DEVICE_PACKAGE_OVERLAYS += device/google/marlin/overlay
 
 PRODUCT_COPY_FILES += \
-    device/google/marlin/recovery/root/sbin/bootctrl.msm8996.so:recovery/root/sbin/bootctrl.msm8996.so \
-    device/google/marlin/recovery/root/sbin/pulldecryptfiles.sh:recovery/root/sbin/pulldecryptfiles.sh \
-    device/google/marlin/recovery/root/sbin/qseecomd:recovery/root/sbin/qseecomd
+    device/google/marlin/recovery/root/odm/lib64/hw/bootctrl.msm8996.so:recovery/root/odm/lib64/hw/bootctrl.msm8996.so \
+    device/google/marlin/recovery/root/sbin/libdiag.so:recovery/root/sbin/libdiag.so \
+    device/google/marlin/recovery/root/sbin/libdrmfs.so:recovery/root/sbin/libdrmfs.so \
+    device/google/marlin/recovery/root/sbin/libdrmtime.so:recovery/root/sbin/libdrmtime.so \
+    device/google/marlin/recovery/root/sbin/libQSEEComAPI.so:recovery/root/sbin/libQSEEComAPI.so \
+    device/google/marlin/recovery/root/sbin/librpmb.so:recovery/root/sbin/librpmb.so \
+    device/google/marlin/recovery/root/sbin/libssd.so:recovery/root/sbin/libssd.so \
+    device/google/marlin/recovery/root/sbin/librecovery_updater_msm8996.so:recovery/root/sbin/librecovery_updater_msm8996.so \
+    device/google/marlin/recovery/root/odm/lib64/hw/gatekeeper.msm8996.so:recovery/root/odm/lib64/hw/gatekeeper.msm8996.so \
+    device/google/marlin/recovery/root/odm/lib64/hw/keystore.msm8996.so:recovery/root/odm/lib64/hw/keystore.msm8996.so \
+    device/google/marlin/recovery/root/sbin/qseecomd:recovery/root/sbin/qseecomd \
+    device/google/marlin/recovery/root/init.recovery.usb.rc:root/init.recovery.usb.rc
 
 # Input device files
 PRODUCT_COPY_FILES += \

@@ -7,6 +7,7 @@ on fs
     chown system system /dev/ion
     start pulldecryptfiles
     install_keyring
+    setprop ro.hardware.bootctrl msm8996
 
 # separate copy needed to use /sbin/linker64 instead of /system/bin/linker64
 service sbinqseecomd /sbin/qseecomd
@@ -15,16 +16,5 @@ service sbinqseecomd /sbin/qseecomd
     group root
     seclabel u:r:recovery:s0
 
-service pulldecryptfiles /sbin/pulldecryptfiles.sh
-    oneshot
-    disabled
-    user root
-    group root
-    seclabel u:r:recovery:s0
-
 on boot
-    start pulldecryptfiles
     start sbinqseecomd
-
-#on property:ro.crypto.state=encrypted
-#    start sbinqseecomd
