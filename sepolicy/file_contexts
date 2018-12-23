@@ -78,8 +78,6 @@
 # files in firmware
 /firmware(/.*)?         u:object_r:firmware_file:s0
 
-# files in /system
-/system/bin/move_widevine_data\.sh u:object_r:move-widevine-data-sh_exec:s0
 
 # files in /vendor
 /vendor/bin/qsee_logger            u:object_r:qsee_logger_exec:s0

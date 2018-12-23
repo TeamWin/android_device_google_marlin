@@ -198,3 +198,19 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := device/google/marlin/device_framew
 
 # Exclude serif fonts for saving system.img size.
 EXCLUDE_SERIF_FONTS := true
+
+TW_THEME := portrait_hdpi
+BOARD_SUPPRESS_SECURE_ERASE := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_DEFAULT_BRIGHTNESS := "80"
+TW_INCLUDE_CRYPTO := true
+AB_OTA_UPDATER := true
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+#TW_USE_TOOLBOX := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+TARGET_RECOVERY_DEVICE_MODULES += android.hardware.boot@1.0 android.hardware.weaver@1.0
+TW_RECOVERY_ADDITIONAL_RELINK_FILES := out/target/product/marlin/system/lib64/android.hardware.boot@1.0.so out/target/product/marlin/system/lib64/android.hardware.weaver@1.0.so
+TARGET_RECOVERY_DEVICE_MODULES += strace debuggerd valgrind
+TW_RECOVERY_ADDITIONAL_RELINK_FILES += out/target/product/marlin/system/bin/strace out/target/product/marlin/system/bin/valgrind

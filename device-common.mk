@@ -19,7 +19,7 @@
 # Everything in this directory will become public
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-    LOCAL_KERNEL := device/google/marlin-kernel/Image.lz4-dtb
+    LOCAL_KERNEL := device/google/marlin-kernel/Image.gz-dtb
 else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
@@ -50,8 +50,13 @@ PRODUCT_COPY_FILES += \
     device/google/marlin/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
     device/google/marlin/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml
 
+ifneq ($(findstring marlin_svelte, $(TARGET_PRODUCT)),)
+PRODUCT_COPY_FILES += \
+    device/google/marlin/media_codecs_performance_svelte.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml
+else
 PRODUCT_COPY_FILES += \
     device/google/marlin/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml
+endif
 
 # Override heap growth limit due to high display density on device
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -443,6 +448,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cp_system_other_odex=1
 
+# Script that copies preloads directory from system_other to data partition
+PRODUCT_COPY_FILES += \
+    device/google/marlin/preloads_copy.sh:system/bin/preloads_copy.sh
+
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 
@@ -523,7 +532,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.camera.notify_nfc=1
 
 PRODUCT_COPY_FILES += \
-    device/google/marlin/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_PRODUCT)/etc/libnfc-nci.conf \
+    device/google/marlin/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/libnfc-nci.conf \
     device/google/marlin/nfc/libpn551_fw.so:$(TARGET_COPY_OUT_VENDOR)/lib/libpn551_fw.so
 
 # Bootloader HAL used for A/B updates.
@@ -636,3 +645,41 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # health HAL
 PRODUCT_PACKAGES += \
     android.hardware.health@2.0-service.marlin
+
+PRODUCT_COPY_FILES += \
+    device/google/marlin/recovery/root/etc/twrp.fstab:recovery/root/etc/twrp.fstab \
+    device/google/marlin/recovery/root/sbin/bootctrl.msm8996.so:recovery/root/sbin/bootctrl.msm8996.so \
+    device/google/marlin/recovery/root/sbin/libdiag.so:recovery/root/sbin/libdiag.so \
+    device/google/marlin/recovery/root/sbin/libdrmfs.so:recovery/root/sbin/libdrmfs.so \
+    device/google/marlin/recovery/root/sbin/libdrmtime.so:recovery/root/sbin/libdrmtime.so \
+    device/google/marlin/recovery/root/sbin/libQSEEComAPI.so:recovery/root/sbin/libQSEEComAPI.so \
+    device/google/marlin/recovery/root/sbin/librpmb.so:recovery/root/sbin/librpmb.so \
+    device/google/marlin/recovery/root/sbin/libssd.so:recovery/root/sbin/libssd.so \
+    device/google/marlin/recovery/root/sbin/qseecomd:recovery/root/sbin/qseecomd \
+    device/google/marlin/recovery/root/sbin/android.hardware.keymaster@3.0-service:recovery/root/sbin/android.hardware.keymaster@3.0-service \
+    device/google/marlin/recovery/root/vendor/compatibility_matrix.1.xml:recovery/root/vendor/compatibility_matrix.1.xml \
+    device/google/marlin/recovery/root/vendor/compatibility_matrix.2.xml:recovery/root/vendor/compatibility_matrix.2.xml \
+    device/google/marlin/recovery/root/vendor/compatibility_matrix.3.xml:recovery/root/vendor/compatibility_matrix.3.xml \
+    device/google/marlin/recovery/root/vendor/compatibility_matrix.device.xml:recovery/root/vendor/compatibility_matrix.device.xml \
+    device/google/marlin/recovery/root/vendor/compatibility_matrix.legacy.xml:recovery/root/vendor/compatibility_matrix.legacy.xml \
+    device/google/marlin/recovery/root/vendor/etc/vintf/manifest.xml:recovery/root/vendor/etc/vintf/manifest.xml \
+    device/google/marlin/recovery/root/vendor/system_manifest.xml:recovery/root/vendor/system_manifest.xml \
+    device/google/marlin/recovery/root/vendor/etc/vintf/compatibility_matrix.xml:recovery/root/vendor/etc/vintf/compatibility_matrix.xml \
+    device/google/marlin/recovery/root/vendor/lib64/hw/android.hardware.boot@1.0-impl.so:recovery/root/vendor/lib64/hw/android.hardware.boot@1.0-impl.so \
+    device/google/marlin/recovery/root/vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl.so:recovery/root/vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl.so \
+    device/google/marlin/recovery/root/vendor/lib64/hw/android.hardware.keymaster@3.0-impl.so:recovery/root/vendor/lib64/hw/android.hardware.keymaster@3.0-impl.so \
+    device/google/marlin/recovery/root/vendor/lib64/hw/gatekeeper.msm8996.so:recovery/root/vendor/lib64/hw/gatekeeper.msm8996.so \
+    device/google/marlin/recovery/root/vendor/lib64/hw/keystore.msm8996.so:recovery/root/vendor/lib64/hw/keystore.msm8996.so \
+    device/google/marlin/recovery/root/vendor/lib64/hw/bootctrl.msm8996.so:recovery/root/vendor/lib64/hw/bootctrl.msm8996.so \
+    device/google/marlin/recovery/root/vendor/lib64/libgptutils.so:recovery/root/vendor/lib64/libgptutils.so \
+    device/google/marlin/recovery/root/init.recovery.usb.rc:root/init.recovery.usb.rc \
+    device/google/marlin/recovery/root/nonplat_hwservice_contexts:recovery/root/nonplat_hwservice_contexts \
+    device/google/marlin/recovery/root/plat_hwservice_contexts:recovery/root/plat_hwservice_contexts \
+    device/google/marlin/recovery/root/nonplat_service_contexts:recovery/root/nonplat_service_contexts \
+    device/google/marlin/recovery/root/plat_service_contexts:recovery/root/plat_service_contexts \
+    device/google/marlin/recovery/root/sbin/android.hardware.gatekeeper@1.0-service:recovery/root/sbin/android.hardware.gatekeeper@1.0-service \
+    device/google/marlin/recovery/root/sbin/prepdecrypt.sh:recovery/root/sbin/prepdecrypt.sh \
+    device/google/marlin/recovery/root/sbin/android.hardware.boot@1.0-service:recovery/root/sbin/android.hardware.boot@1.0-service \
+    device/google/marlin/recovery/root/sbin/libpuresoftkeymasterdevice.so:recovery/root/sbin/libpuresoftkeymasterdevice.so \
+    device/google/marlin/recovery/root/sbin/libkeymaster3device.so:recovery/root/sbin/libkeymaster3device.so \
+    device/google/marlin/recovery/root/sbin/android.hardware.confirmationui@1.0.so:recovery/root/sbin/android.hardware.confirmationui@1.0.so \
