@@ -172,7 +172,7 @@ HAVE_SYNAPTICS_DSX_FW_UPGRADE := true
 # Enable MDTP (Mobile Device Theft Protection)
 TARGET_USE_MDTP := true
 
-TARGET_BOARD_KERNEL_HEADERS := device/google/marlin/kernel-headers
+TARGET_BOARD_KERNEL_HEADERS := hardware/qcom/msm8998/kernel-headers
 
 # Install odex files into the other system image
 BOARD_USES_SYSTEM_OTHER_ODEX := true
@@ -212,5 +212,6 @@ TARGET_USES_LOGD := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TARGET_RECOVERY_DEVICE_MODULES += android.hardware.boot@1.0 android.hardware.weaver@1.0
 TW_RECOVERY_ADDITIONAL_RELINK_FILES := out/target/product/marlin/system/lib64/android.hardware.boot@1.0.so out/target/product/marlin/system/lib64/android.hardware.weaver@1.0.so
-TARGET_RECOVERY_DEVICE_MODULES += strace debuggerd valgrind
-TW_RECOVERY_ADDITIONAL_RELINK_FILES += out/target/product/marlin/system/bin/strace out/target/product/marlin/system/bin/valgrind
+#TARGET_RECOVERY_DEVICE_MODULES += strace debuggerd valgrind
+#TW_RECOVERY_ADDITIONAL_RELINK_FILES += out/target/product/marlin/system/bin/strace out/target/product/marlin/system/bin/valgrind
+#TW_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
