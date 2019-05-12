@@ -595,7 +595,7 @@ endif
 
 # b/35633646
 # Statically linked toybox for modprobe in recovery mode
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     toybox_static
 
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
