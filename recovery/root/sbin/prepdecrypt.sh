@@ -18,7 +18,6 @@ finish()
 	exit 0
 }
 sleep 1
-ln -sf /sbin/toybox_static /sbin/setprop
 mkdir -p /system/etc/vintf
 mv /vendor/system_manifest.xml /system/etc/vintf/manifest.xml
 suffix=$(getprop ro.boot.slot_suffix)
