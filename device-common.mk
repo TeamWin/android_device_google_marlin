@@ -19,7 +19,7 @@
 # Everything in this directory will become public
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-    LOCAL_KERNEL := device/google/marlin-kernel/Image.gz-dtb
+    LOCAL_KERNEL := device/google/marlin/Image.gz-dtb
     BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
