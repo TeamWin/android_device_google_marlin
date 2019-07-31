@@ -19,17 +19,14 @@
 # Everything in this directory will become public
 
 PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi
+PRODUCT_AAPT_PREF_CONFIG := 560dpi
+PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
 
 -include device/google/marlin/device-common.mk
 
-# Overlay
-DEVICE_PACKAGE_OVERLAYS += device/google/marlin/sailfish/overlay
-
 # display
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=420
+    ro.sf.lcd_density=560
 
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -38,40 +35,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # HWUI cache sizes
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.hwui.texture_cache_size=56 \
-    ro.hwui.layer_cache_size=32 \
-    ro.hwui.path_cache_size=16
+    ro.hwui.texture_cache_size=72 \
+    ro.hwui.layer_cache_size=48 \
+    ro.hwui.path_cache_size=32
 
 PRODUCT_COPY_FILES += \
     device/google/marlin/fstab.common:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.sailfish \
-    device/google/marlin/audio_platform_info_tasha_sailfish.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info_tasha.xml \
+    device/google/marlin/audio_platform_info_tasha_marlin.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info_tasha.xml \
     device/google/marlin/init.recovery.common.rc:recovery/root/init.recovery.sailfish.rc
-
-# Sensor packages
-PRODUCT_PACKAGES += \
-    sensors.sailfish \
-    activity_recognition.sailfish
-
-PRODUCT_COPY_FILES += \
-    device/google/marlin/nfc/libnfc-nxp.sailfish.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf
-
-# Led packages
-PRODUCT_PACKAGES += \
-    lights.sailfish
-
-# VR packages
-PRODUCT_PACKAGES += \
-    vr.sailfish
-
-# Fingerprint
-PRODUCT_PACKAGES += \
-    fingerprint.sailfish
-
-$(call add-product-sanitizer-module-config,wpa_supplicant,never)
-$(call add-product-sanitizer-module-config,toybox_vendor,never)
-$(call add-product-sanitizer-module-config,thermal-engine,never)
-$(call add-product-sanitizer-module-config,netmgrd,never)
-$(call add-product-sanitizer-module-config,mm-camera,never)
-$(call add-product-sanitizer-module-config,myftm,never)
-$(call add-product-sanitizer-module-config,libqcril,never)
-$(call add-product-sanitizer-module-config,hostapd,never)
