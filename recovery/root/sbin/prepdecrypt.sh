@@ -46,6 +46,7 @@ if [ ! -z "$is_fastboot_twrp" ]; then
 	#fi
 fi
 
+cp /s/system/lib64/libclang_rt.ubsan_standalone-aarch64-android.so /sbin/
 if [ -f /s/system/build.prop ]; then
 	# TODO: It may be better to try to read these from the boot image than from /system
 	osver=$(grep -i 'ro.build.version.release' /s/system/build.prop  | cut -f2 -d'=')
