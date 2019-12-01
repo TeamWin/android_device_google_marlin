@@ -641,7 +641,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # health HAL
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.0-service.marlin
+    android.hardware.health@2.0-service.marlin \
 
 PRODUCT_COPY_FILES += \
     device/google/marlin/recovery/root/etc/twrp.fstab:recovery/root/etc/twrp.fstab \
