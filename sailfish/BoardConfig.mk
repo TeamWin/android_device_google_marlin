@@ -220,3 +220,4 @@ TW_EXCLUDE_DEFAULT_USB_INIT := true
 #TW_RECOVERY_ADDITIONAL_RELINK_FILES += out/target/product/marlin/system/bin/strace out/target/product/marlin/system/bin/valgrind
 #TW_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
 BOARD_VNDK_RUNTIME_DISABLE := true
+TARGET_USERIMAGES_USE_F2FS := true
